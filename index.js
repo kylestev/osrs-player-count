@@ -22,9 +22,8 @@ function playerCountChecker() {
         .then(({
           data
         }) => {
-          const matches = /<p class='player-count'>There are currently (\d+) people playing!<\/p>/.exec(data)
-          // console.log(matches[1])
-          count = +matches[1]
+          const matches = /<p class='player-count'>There are currently ([0-9,]+) people playing!<\/p>/.exec(data)
+          count = parseInt(matches[1].replace(",", ""))
           lastChecked = Date.now()
         })
         .catch(err => console.error(err))
